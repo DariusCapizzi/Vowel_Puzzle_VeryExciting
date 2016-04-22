@@ -25,13 +25,50 @@ public class AppTest extends FluentTest {
 
   @Test
   public void cssLoads() {
-    goTo("http://localhost:4567/result");
+    goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("app.css");
   }
 
   @Test
-  public void resultsLoads() {
-    goTo("http://localhost:4567/puzzle");
-    assertThat(pageSource()).contains("can");
+  public void puzzleLoadsSuccess() {
+    goTo("http://localhost:4567/");
+    fill("#originalString").with("testword");
+    submit("#originalSubmit");
+    assertThat(pageSource()).contains("Guess");
   }
+
+  @Test
+  public void puzzleLoadsFailure() {
+    goTo("http://localhost:4567/");
+    fill("#originalString").with("");
+    submit("#originalSubmit");
+    assertThat(pageSource()).contains("Invalid");
+  }
+
+
+  @Test
+  public void resultLoadsWin() {
+    goTo("http://localhost:4567/");
+    fill("#originalString").with("testword");
+    submit("#originalSubmit");
+
+    fill("#guessInput").with("testword");
+    submit("#guessSubmit");
+
+    assertThat(pageSource()).contains("play again");
+  }
+
+  @Test
+  public void resultLoadsFail() {
+    goTo("http://localhost:4567/");
+    fill("#originalString").with("testword");
+    submit("#originalSubmit");
+
+    fill("#guessInput").with("anything else");
+    submit("#guessSubmit");
+    assertThat(pageSource()).contains("try again");
+  }
+
+
+
 }

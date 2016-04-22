@@ -1,0 +1,15 @@
+<p>You $testWin</p>
+
+#if ($testWin.equals("Won"))
+<form action="/" method=get>
+  <button type="submit">play again</button>
+
+</form>
+#else
+<form action="/puzzle" method=get>
+  <button type="submit">try again</button>
+
+
+  <input type="hidden" name="inPuzzle" value="$answer">
+</form>
+#end

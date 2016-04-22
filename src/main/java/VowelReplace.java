@@ -53,7 +53,7 @@ class VowelReplace {
     }
 
 
-
+    outString = outString.trim();
     return outString;
   }
 

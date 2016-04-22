@@ -1,1 +1,20 @@
-<p> can you figure it out: $puzzleOut </p>
+
+<p>guess the word, the vowels are missing</p>
+
+#if ($puzzleOut != "")
+<form method="get" action="/result">
+  <p> $puzzleOut </p>
+  <input id="guessInput" type="text" name="guess"/>
+  <button type="submit"> Guess </button>
+
+  <input id="guessSubmit" type="hidden" name="answer" value="$answer"/>
+</form>
+
+
+#else
+
+<form method="get" action="/">
+  <h1>hey</h1>
+  <button type="submit"> Invalid </button>
+</form>
+#end
