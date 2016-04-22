@@ -1,0 +1,17 @@
+body {
+  text-align: center;
+  background-color: #ffff99;
+}
+
+div {
+  margin: auto;
+  margin-top: 100px;
+  background-color: #cccc00;
+  color:blue;
+  text-shadow: #ff9933;
+  width: 100px
+}
+
+input{
+  width:100px
+}

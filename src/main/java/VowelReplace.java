@@ -1,12 +1,26 @@
 
 class VowelReplace {
+
+  //recursion?
+
+
+  public static String vowelsToDashWithReplaceAll(String hasVowels){
+    String inOutString = hasVowels;
+    String[] vowels = {"a","e","i","o","u","A","E","I","O","U"};
+    for (int j=0; j< vowels.length; j++){
+      inOutString = inOutString.replaceAll(vowels[j], "-");
+    }
+
+    return inOutString;
+  }
+
   public static String vowelsToDash(String hasVowels){
     //initialize value
     String inString = hasVowels;
     char[] vowels = {'a','e','i','o','u','A','E','I','O','U'};
     String outString = "";
     boolean isConsonant = true;
-  //  System.out.println();
+
 
     //for every character inString
     for (int i=0;i< inString.length();i++){
@@ -44,8 +58,3 @@ class VowelReplace {
   }
 
 }
-
-
-// if ( vowels.indexOf(inString.charAt(i)) != -1 ){
-//   inString.charAt(i) = "-";
-// }

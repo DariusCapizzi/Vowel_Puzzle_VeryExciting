@@ -1,25 +1,37 @@
+import org.fluentlenium.adapter.FluentTest;
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class AppTest {
+public class AppTest extends FluentTest {
+  public WebDriver webDriver = new HtmlUnitDriver();
+
+  @Override
+  public WebDriver getDefaultDriver() {
+    return webDriver;
+  }
+
+  @ClassRule
+  public static ServerRule server = new ServerRule();
 
   @Test
-  public void VowelReplace_ReturnString_String(){
-    String expected = "qwrt";
-    assertEquals(expected, VowelReplace.vowelsToDash("qwrt"));
+  public void homeLoads() {
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("hey");
   }
 
   @Test
-  public void VowelReplace_ReturnStringWithReplacedVowel_String(){
-    String expected = "-";
-    assertEquals(expected, VowelReplace.vowelsToDash("a"));
+  public void cssLoads() {
+    goTo("http://localhost:4567/result");
+    assertThat(pageSource()).contains("app.css");
   }
 
   @Test
-  public void VowelReplace_ReturnStringWithReplacedVowels_String(){
-    String expected = "s-p-rc-l-FR-G-L-st-c-xp--l-d-c---s";
-    assertEquals(expected, VowelReplace.vowelsToDash("supercaliFRAGIListicexpialidocious"));
+  public void resultsLoads() {
+    goTo("http://localhost:4567/puzzle");
+    assertThat(pageSource()).contains("can");
   }
-
 }
