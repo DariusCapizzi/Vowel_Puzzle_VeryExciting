@@ -1,4 +1,3 @@
-
 import java.util.Map;
 import java.util.HashMap;
 
@@ -11,28 +10,19 @@ public class App {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
-
     get("/", (req,res) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/home.vtl");
-
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
-
     get("/puzzle", (req,res) -> {
-
       String inPuzzle = req.queryParams("inPuzzle");
       String outPuzzle = VowelReplace.vowelsToDash(inPuzzle);
-
-
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("answer", inPuzzle);
       model.put("puzzleOut", outPuzzle);
-
       model.put("template", "templates/puzzle.vtl");
-
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -41,20 +31,14 @@ public class App {
       System.out.println(req.queryParams());
       String userGuess = req.queryParams("guess");
       String answer = req.queryParams("answer");
-
-
-
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/result.vtl");
-
-
       if ( userGuess.equals(answer) ){
         model.put("testWin", "Won");
       } else {
         model.put("testWin", "lost");
         model.put("answer", answer);
       }
-
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }

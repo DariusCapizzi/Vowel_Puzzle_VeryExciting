@@ -51,10 +51,8 @@ public class AppTest extends FluentTest {
     goTo("http://localhost:4567/");
     fill("#originalString").with("testword");
     submit("#originalSubmit");
-
     fill("#guessInput").with("testword");
     submit("#guessSubmit");
-
     assertThat(pageSource()).contains("play again");
   }
 
@@ -63,7 +61,6 @@ public class AppTest extends FluentTest {
     goTo("http://localhost:4567/");
     fill("#originalString").with("testword");
     submit("#originalSubmit");
-
     fill("#guessInput").with("anything else");
     submit("#guessSubmit");
     assertThat(pageSource()).contains("try again");
